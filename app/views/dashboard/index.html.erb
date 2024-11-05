@@ -1,2 +1,7 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<% if user_signed_in? %>
+  <h1>Welcome FishSpot, <%= current_user.email %></h1>
+  <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
+<% else %>
+  <h1>FishSpot</h1>
+  <%= link_to 'Sign in', new_user_session_path %>
+<% end %>
