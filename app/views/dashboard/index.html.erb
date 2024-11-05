@@ -1,7 +1,9 @@
 <% if user_signed_in? %>
-  <h1>Welcome FishSpot, <%= current_user.email %></h1>
-  <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
+<!--  <h1>Welcome FishSpot, <%#= current_user.email %></h1>-->
+  <%#= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
+  <%= render 'header' %>
 <% else %>
-  <h1>FishSpot</h1>
-  <%= link_to 'Sign in', new_user_session_path %>
+<!--  <h1>FishSpot</h1>-->
+  <%#= link_to 'Sign in', new_user_session_path %>
+  <%= render 'start_screen' %>
 <% end %>

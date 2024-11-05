@@ -12,7 +12,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/sessions", type: :request do
+RSpec.describe "/trips", type: :request do
   
   # This should return the minimal set of attributes required to create a valid
   # Session. As you add validations to Session, be sure to
@@ -28,30 +28,30 @@ RSpec.describe "/sessions", type: :request do
   describe "GET /index" do
     it "renders a successful response" do
       Session.create! valid_attributes
-      get sessions_url
+      get trips_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      session = Session.create! valid_attributes
-      get session_url(session)
+      trip = Trip.create! valid_attributes
+      get trip_url(trip)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_session_url
+      get new_trip_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "renders a successful response" do
-      session = Session.create! valid_attributes
-      get edit_session_url(session)
+      trip = Trip.create! valid_attributes
+      get edit_trip_url(trip)
       expect(response).to be_successful
     end
   end
@@ -126,7 +126,7 @@ RSpec.describe "/sessions", type: :request do
       }.to change(Session, :count).by(-1)
     end
 
-    it "redirects to the sessions list" do
+    it "redirects to the trips list" do
       session = Session.create! valid_attributes
       delete session_url(session)
       expect(response).to redirect_to(sessions_url)

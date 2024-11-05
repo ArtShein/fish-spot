@@ -1,0 +1,12 @@
+<header>
+  <nav>
+    <ul style="float: left;">
+      <li><%= link_to 'Dashboard', root_path %></li>
+      <li><%= link_to 'Trips', trips_path %></li>
+      <li><%= link_to 'Locations', locations_path %></li>
+    </ul>
+    <ul style="float: right;">
+      <li><%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %></li>
+    </ul>
+  </nav>
+</header>

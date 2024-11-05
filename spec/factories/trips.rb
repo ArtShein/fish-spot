@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :session do
+  factory :trip do
     name { "MyString" }
   end
 end

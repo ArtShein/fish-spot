@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "sessions/show", type: :view do
+RSpec.describe "trips/show", type: :view do
   before(:each) do
-    assign(:session, Session.create!(
+    assign(:trip, Trip.create!(
       name: "Name"
     ))
   end
