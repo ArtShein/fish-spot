@@ -246,7 +246,7 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.1)
-    rubocop (1.68.0)
+    rubocop (1.66.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -258,6 +258,10 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.34.0)
       parser (>= 3.3.1.0)
+    rubocop-capybara (2.19.0)
+      rubocop (~> 1.41)
+    rubocop-factory_bot (2.24.0)
+      rubocop (~> 1.33)
     rubocop-minitest (0.36.0)
       rubocop (>= 1.61, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
@@ -274,6 +278,10 @@ GEM
       rubocop-minitest
       rubocop-performance
       rubocop-rails
+    rubocop-rspec (2.25.0)
+      rubocop (~> 1.40)
+      rubocop-capybara (~> 2.17)
+      rubocop-factory_bot (~> 2.22)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     securerandom (0.3.1)
@@ -293,6 +301,15 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.1)
+    tailwindcss-rails (3.0.0)
+      railties (>= 7.0.0)
+      tailwindcss-ruby
+    tailwindcss-ruby (3.4.14)
+    tailwindcss-ruby (3.4.14-aarch64-linux)
+    tailwindcss-ruby (3.4.14-arm-linux)
+    tailwindcss-ruby (3.4.14-arm64-darwin)
+    tailwindcss-ruby (3.4.14-x86_64-darwin)
+    tailwindcss-ruby (3.4.14-x86_64-linux)
     thor (1.3.2)
     timeout (0.4.1)
     turbo-rails (2.0.11)
@@ -339,10 +356,15 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.2.2)
   rspec-rails (~> 6.1.0)
+  rubocop (~> 1.39)
+  rubocop-performance (~> 1.15, >= 1.15.1)
+  rubocop-rails (~> 2.17, >= 2.17.2)
   rubocop-rails-omakase
+  rubocop-rspec (~> 2.15)
   selenium-webdriver
   sprockets-rails
   stimulus-rails
+  tailwindcss-rails (~> 3.0)
   turbo-rails
   tzinfo-data
   web-console

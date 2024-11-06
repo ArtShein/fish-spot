@@ -18,7 +18,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
-gem 'devise', '~> 4.9.2'
+gem "devise", "~> 4.9.2"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -40,17 +40,19 @@ group :development, :test do
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
-
-  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem "rubocop-rails-omakase", require: false
-  gem 'rspec-rails', '~> 6.1.0'
-  gem 'factory_bot_rails'
-  gem 'faker'
+  gem "rspec-rails", "~> 6.1.0"
+  gem "factory_bot_rails"
+  gem "faker"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "rubocop-rails-omakase", require: false
+  gem "rubocop", "~> 1.39", require: false
+  gem "rubocop-performance", "~> 1.15", ">= 1.15.1", require: false
+  gem "rubocop-rails", "~> 2.17", ">= 2.17.2", require: false
+  gem "rubocop-rspec", "~> 2.15", require: false
 end
 
 group :test do
@@ -58,3 +60,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "tailwindcss-rails", "~> 3.0"

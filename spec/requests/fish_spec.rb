@@ -13,7 +13,6 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/fish", type: :request do
-  
   # This should return the minimal set of attributes required to create a valid
   # Fish. As you add validations to Fish, be sure to
   # adjust the attributes here as well.
@@ -77,12 +76,11 @@ RSpec.describe "/fish", type: :request do
         }.to change(Fish, :count).by(0)
       end
 
-    
+
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post fish_index_url, params: { fish: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
@@ -108,13 +106,11 @@ RSpec.describe "/fish", type: :request do
     end
 
     context "with invalid parameters" do
-    
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         fish = Fish.create! valid_attributes
         patch fish_url(fish), params: { fish: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 

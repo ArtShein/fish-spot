@@ -18,7 +18,6 @@ RSpec.describe "fish/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", fish_path(fish), "post" do
-
       assert_select "input[name=?]", "fish[name]"
 
       assert_select "input[name=?]", "fish[quantity]"
