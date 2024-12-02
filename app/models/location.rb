@@ -3,7 +3,7 @@ class Location < ApplicationRecord
   has_many :trips
 
   enum accessibility: {
-    not_paid: 0,
+    unpaid: 0,
     paid: 1
   }
 

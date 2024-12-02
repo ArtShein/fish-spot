@@ -18,7 +18,17 @@
 
   <div>
     <%= form.label :accessibility, style: "display: block" %>
-    <%= form.number_field :accessibility %>
+    <%= form.select :accessibility, Location.accessibilities.keys %>
+  </div>
+
+  <div>
+    <%= form.label :conditions, style: "display: block" %>
+    <%= form.select :conditions, Location.conditions.keys %>
+  </div>
+
+  <div>
+    <%= form.label :proximity, style: "display: block" %>
+    <%= form.select :proximity, Location.proximities.keys %>
   </div>
 
   <div>

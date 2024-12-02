@@ -22,6 +22,7 @@ class TripsController < ApplicationController
   # POST /trips or /trips.json
   def create
     @trip = Trip.new(trip_params)
+    @trip.user = current_user
 
     respond_to do |format|
       if @trip.save
@@ -65,6 +66,6 @@ class TripsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def trip_params
-      params.require(:trip).permit(:name)
+      params.require(:trip).permit(:name, :location_id, :user_id)
     end
 end

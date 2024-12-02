@@ -21,7 +21,9 @@ class LocationsController < ApplicationController
 
   # POST /locations or /locations.json
   def create
+    debugger
     @location = Location.new(location_params)
+    @location.user = current_user
 
     respond_to do |format|
       if @location.save
@@ -65,6 +67,6 @@ class LocationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def location_params
-      params.require(:location).permit(:name, :accessibility)
+      params.require(:location).permit(:name, :accessibility, :conditions, :proximity, :user_id)
     end
 end
