@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "dashboard#index"
-  get "dashboard/index"
-  resources :trips
-  resources :locations
-  resources :fish
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+    root to: "dashboard#index"
+    get "dashboard/index"
+    resources :trips
+    resources :locations
+    resources :fish
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

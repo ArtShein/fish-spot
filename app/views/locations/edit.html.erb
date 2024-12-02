@@ -1,12 +1,12 @@
 <% content_for :title, "Editing location" %>
 
-<h1>Editing location</h1>
+<h1><%= t('.title') %></h1>
 
 <%= render "form", location: @location %>
 
 <br>
 
 <div>
-  <%= link_to "Show this location", @location %> |
-  <%= link_to "Back to locations", locations_path %>
+  <%= link_to t('.show_location'), @location %> |
+  <%= link_to t('locations.back'), locations_path %>
 </div>

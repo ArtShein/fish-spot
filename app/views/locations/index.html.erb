@@ -2,15 +2,15 @@
 
 <% content_for :title, "Locations" %>
 
-<h1>Locations</h1>
+<h1><%= t('.title') %></h1>
 
 <div id="locations">
   <% @locations.each do |location| %>
     <%= render location %>
     <p>
-      <%= link_to "Show this location", location %>
+      <%= link_to t('.show_location'), location %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New location", new_location_path %>
+<%= link_to t('.new_location'), new_location_path %>

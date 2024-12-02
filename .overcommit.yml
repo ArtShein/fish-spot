@@ -24,7 +24,7 @@ PreCommit:
     enabled: true
     description: 'Analyze with RuboCop'
     required_executable: 'rubocop'
-    command: ['bundle', 'exec', 'rubocop']
+    command: ['bundle', 'exec', 'rubocop', '-a']
     include:
       - '**/*.rake'
       - '**/*.rb'

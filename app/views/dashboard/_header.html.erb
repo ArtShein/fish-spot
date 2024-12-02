@@ -2,13 +2,28 @@
   <div class="mx-20">
     <nav class="flex justify-between items-center">
       <ul class="flex space-x-4">
-        <li><%= link_to 'Dashboard', root_path, class: 'hover:text-gray-300 text-black' %></li>
-        <li><%= link_to 'Trips', trips_path, class: 'hover:text-gray-300 text-black' %></li>
-        <li><%= link_to 'Locations', locations_path, class: 'hover:text-gray-300 text-black' %></li>
+        <li><%= link_to t('activerecord.models.dashboard'), root_path, class: 'hover:text-gray-300 text-black' %></li>
+        <li><%= link_to t('activerecord.models.trip'), trips_path, class: 'hover:text-gray-300 text-black' %></li>
+        <li><%= link_to t('activerecord.models.location'), locations_path, class: 'hover:text-gray-300 text-black' %></li>
+      </ul>
+      <ul class="flex space-x-4">
+        <% I18n.available_locales.each do |locale| %>
+          <li>
+            <% if I18n.locale == locale %>
+              <span class="flag-icon flag-icon-<%= locale == :en ? 'gb' : 'ua' %> flag-icon-squared"></span>
+              <%= t(locale, scope: 'locales') %>
+            <% else %>
+              <%= link_to url_for(locale: locale) do %>
+                <span class="flag-icon flag-icon-<%= locale == :en ? 'gb' : 'ua' %> flag-icon-squared"></span>
+                <%= t(locale, scope: 'locales') %>
+              <% end %>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
       <ul class="flex space-x-4">
         <li>
-          <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'bg-red-500 hover:bg-red-700 text-black font-bold py-2 px-4 rounded' %>
+          <%= link_to t('devise.buttons.sign_out'), destroy_user_session_path, data: { turbo_method: :delete }, class: 'bg-red-500 hover:bg-red-700 text-black font-bold py-2 px-4 rounded' %>
         </li>
       </ul>
     </nav>
