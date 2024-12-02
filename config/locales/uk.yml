@@ -1,0 +1,79 @@
+uk:
+  locales:
+    en: "Англійська"
+    uk: "Українська"
+  activerecord:
+    models:
+      location: "Локація"
+      trip: "Риболовля"
+      fish: "Риба"
+      dashboard: "Головна"
+    attributes:
+      location:
+        name: "Назва"
+        access: "Доступність"
+        conds: "Умови ловлі"
+        proxy: "Близькість до метро"
+      trip:
+        name: "Назва"
+        location: "Локація"
+  enums:
+    location:
+      accessibility:
+        free: "Безкоштовно"
+        paid: "Платно"
+      conditions:
+        good: "Добре"
+        medium: "Середнє"
+        bad: "Погано"
+      proximity:
+        near: "Близько до метро"
+        far: "Далеко від метро"
+  global:
+    messages:
+      errors:
+        one: "Одна помилка завадила зберегти цю подорож:"
+        other: "%{count} помилок завадили зберегти цю подорож:"
+  devise:
+    buttons:
+      sign_in: "Увійти"
+      sign_out: "Вийти"
+      sign_up: "Зареєструватися"
+  locations:
+    back: "Назад до Локацій"
+    form:
+      name: "Назва"
+      access: "Доступність"
+      conditions: "Умови"
+      proxy: "Близькість"
+    index:
+      title: "Локації"
+      new_location: "Нова Локація"
+      show_location: "Показати цю Локацію"
+    new:
+      title: "Нова Локація"
+      create: "Створити Локацію"
+    edit:
+      title: "Редагувати Локацію"
+      show_location: "Показати цю Локацію"
+    show:
+      edit_location: "Редагувати цю Локацію"
+      destroy_location: "Видалити цю Локацію"
+  trips:
+    back: "Назад до Подорожей"
+    form:
+      name: "Назва"
+      location: "Локація"
+    index:
+      title: "Подорожі"
+      new_trip: "Нова Подорож"
+      show_trip: "Показати цю Подорож"
+    new:
+      title: "Нова Подорож"
+      create: "Створити Подорож"
+    edit:
+      title: "Редагувати Подорож"
+      show_trip: "Показати цю Подорож"
+    show:
+      edit_trip: "Редагувати цю Подорож"
+      destroy_trip: "Видалити цю Подорож"

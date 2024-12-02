@@ -1,7 +1,12 @@
 <div id="<%= dom_id trip %>">
   <p>
-    <strong>Name:</strong>
+    <strong><%=t('trips.form.name')%>:</strong>
     <%= trip.name %>
+  </p>
+
+  <p>
+    <strong><%=t('trips.form.location')%>:</strong>
+    <%= trip.location.name %>
   </p>
 
 </div>

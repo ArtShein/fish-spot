@@ -1,7 +1,7 @@
 <%= form_with(model: location) do |form| %>
   <% if location.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
+      <h2><%= t('global.messages.errors', count: location.errors.count) %></h2>
 
       <ul>
         <% location.errors.each do |error| %>
@@ -12,23 +12,29 @@
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
+    <%= form.label t('locations.form.name'), style: "display: block" %>
     <%= form.text_field :name %>
   </div>
 
   <div>
-    <%= form.label :accessibility, style: "display: block" %>
-    <%= form.select :accessibility, Location.accessibilities.keys %>
+    <%= form.label t('locations.form.access'), style: "display: block" %>
+    <%= form.select :accessibility, Location.accessibilities.keys.map {
+      |key| [t("enums.location.accessibility.#{key}"), key]
+    } %>
   </div>
 
   <div>
-    <%= form.label :conditions, style: "display: block" %>
-    <%= form.select :conditions, Location.conditions.keys %>
+    <%= form.label t('locations.form.conditions'), style: "display: block" %>
+    <%= form.select :conditions, Location.conditions.keys.map {
+      |key| [t("enums.location.conditions.#{key}"), key]
+    } %>
   </div>
 
   <div>
-    <%= form.label :proximity, style: "display: block" %>
-    <%= form.select :proximity, Location.proximities.keys %>
+    <%= form.label t('locations.form.proxy'), style: "display: block" %>
+    <%= form.select :proximity, Location.proximities.keys.map {
+      |key| [t("enums.location.proximity.#{key}"), key]
+    } %>
   </div>
 
   <div>

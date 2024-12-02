@@ -1,12 +1,22 @@
 <div id="<%= dom_id location %>">
   <p>
-    <strong>Name:</strong>
+    <strong><%=t('locations.form.name') %>:</strong>
     <%= location.name %>
   </p>
 
   <p>
-    <strong>Accessibility:</strong>
-    <%= location.accessibility %>
+    <strong><%= t('locations.form.access') %>:</strong>
+    <%= t("enums.location.accessibility.#{location.accessibility}") %>
+  </p>
+
+  <p>
+    <strong><%= t('locations.form.conditions') %>:</strong>
+    <%= t("enums.location.conditions.#{location.conditions}") %>
+  </p>
+
+  <p>
+    <strong><%= t('locations.form.proxy') %>:</strong>
+    <%= t("enums.location.proximity.#{location.proximity}") %>
   </p>
 
 </div>
