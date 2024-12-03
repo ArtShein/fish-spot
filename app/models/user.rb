@@ -6,4 +6,7 @@ class User < ApplicationRecord
 
   has_many :trips
   has_many :locations
+  has_one :profile
+
+  accepts_nested_attributes_for :profile
 end

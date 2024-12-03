@@ -25,7 +25,7 @@
 
   <body>
     <% unless devise_controller? %>
-      <%= render 'dashboard/header' %>
+      <%= render 'dashboard/navigation' %>
     <% end %>
     <main class="prose mx-auto">
       <%= yield %>

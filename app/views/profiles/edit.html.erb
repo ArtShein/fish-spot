@@ -1,0 +1,32 @@
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+  <div class="w-full max-w-md bg-white p-8 rounded shadow-xl">
+    <%= form_for @profile, html: { multipart: true } do |f| %>
+      <div class="text-center mb-4">
+        <% if current_user.profile.avatar.present? %>
+          <%= image_tag current_user.profile.avatar.variant(resize: "24x24!"), alt: "Avatar", class: "w-24 h-24 rounded-full mx-auto" %>
+        <% else %>
+          <%= image_tag(asset_path('profile-icon.png'), size: "100x100", class: "center inline-block mx-auto") %>
+        <% end %>
+      </div>
+      <div class="mb-4">
+        <%= f.label t('trips.profiles.edit.avatar'), "Upload Avatar", class: "block text-gray-700 text-sm font-bold mb-1" %>
+        <%= f.file_field :avatar, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+      <div class="mb-4">
+        <%= f.label t('trips.profiles.edit.full_name'), class: "block text-gray-700 text-sm font-bold mb-1" %>
+        <%= f.text_field :full_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+      <div class="mb-4">
+        <%= f.label t('trips.profiles.edit.phone'), class: "block text-gray-700 text-sm font-bold mb-1" %>
+        <%= f.text_field :phone, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+      <div class="mb-4">
+        <%= f.label t('trips.profiles.edit.description'), class: "block text-gray-700 text-sm font-bold mb-1" %>
+        <%= f.text_area :description, rows: 3, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+      <div class="flex items-center justify-between">
+        <%= f.submit t('trips.profiles.edit.update_profile'), class: "center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+  <div class="w-full max-w-md bg-white p-8 rounded shadow-xl">
+    <div class="text-center mb-4">
+      <% if current_user.profile.avatar.present? %>
+        <%= image_tag current_user.profile.avatar.variant(resize: "24x24!"), alt: "Avatar", class: "w-24 h-24 rounded-full mx-auto" %>
+      <% else %>
+        <%= image_tag(asset_path('profile-icon.png'), size: "100x100", class: "center inline-block mx-auto") %>
+      <% end %>
+    </div>
+    <div class="text-center mb-4">
+      <h2 class="text-2xl font-bold"><%= @profile.full_name %></h2>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-1"><%= t('trips.profiles.show.phone') %></label>
+      <p class="text-gray-700"><%= @profile.phone %></p>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-1"><%= t('trips.profiles.show.description') %></label>
+      <p class="text-gray-700"><%= @profile.description %></p>
+    </div>
+    <div class="text-center mt-4">
+      <%= link_to t('trips.profiles.show.edit_profile'), edit_profile_path, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+    </div>
+  </div>
+</div>

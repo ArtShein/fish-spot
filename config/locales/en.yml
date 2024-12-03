@@ -1,13 +1,14 @@
 en:
   locales:
-    en: "English"
-    uk: "Ukrainian"
+    en: "EN"
+    ua: "UA"
   activerecord:
     models:
       location: "Location"
       trip: "Trip"
       fish: "Fish"
       dashboard: "Dashboard"
+      profile: "Profile"
     attributes:
       location:
         name: "Name"
@@ -77,3 +78,15 @@ en:
     show:
       edit_trip: "Edit this Trip"
       destroy_trip: "Destroy this Trip"
+    profiles:
+      show:
+        phone: "Phone"
+        description: "Description"
+        edit_profile: "Edit Profile"
+      edit:
+        phone: "Phone"
+        description: "Description"
+        avatar: "Avatar"
+        full_name: "Full Name"
+        update_profile: "Update Profile"
+

@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :users
+  get "profiles/show"
+  get "profiles/edit"
+  get "profiles/update"
+  devise_for :users, controllers: {
+    registrations: "users/registrations"
+  }
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     root to: "dashboard#index"
     get "dashboard/index"
     resources :trips
     resources :locations
     resources :fish
+    resource :profile, only: %i[show edit update]
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

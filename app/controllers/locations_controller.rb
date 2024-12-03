@@ -21,7 +21,6 @@ class LocationsController < ApplicationController
 
   # POST /locations or /locations.json
   def create
-    debugger
     @location = Location.new(location_params)
     @location.user = current_user
 
@@ -60,12 +59,11 @@ class LocationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_location
       @location = Location.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def location_params
       params.require(:location).permit(:name, :accessibility, :conditions, :proximity, :user_id)
     end

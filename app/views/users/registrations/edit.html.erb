@@ -3,6 +3,25 @@
 <div class="flex justify-center items-center min-h-screen">
   <div class="w-full max-w-md bg-white p-8 rounded shadow-xl mt-0">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.fields_for :profile do |pf| %>
+        <div class="mb-2">
+          <%= pf.label :first_name, class: "block text-gray-700 text-sm font-bold mb-1" %>
+          <%= pf.text_field :first_name, placeholder: 'First name *', class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>
+        <div class="mb-2">
+          <%= pf.label :last_name, class: "block text-gray-700 text-sm font-bold mb-1" %>
+          <%= pf.text_field :last_name, placeholder: 'Last name *', class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>
+        <div class="mb-2">
+          <%= pf.label :phone, class: "block text-gray-700 text-sm font-bold mb-1" %>
+          <%= pf.text_field :phone, placeholder: 'Phone', class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>
+        <div class="mb-2">
+          <%= pf.label :description, class: "block text-gray-700 text-sm font-bold mb-1" %>
+          <%= pf.text_area :description, cols: 40, rows: 3, placeholder: 'Tell us about yourself ;)', class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>
+      <% end %>
+
       <div class="mb-2">
         <%= f.label :email, class: "block text-gray-700 text-sm font-bold mb-1" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>

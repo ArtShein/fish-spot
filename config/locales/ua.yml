@@ -1,13 +1,14 @@
-uk:
+ua:
   locales:
-    en: "Англійська"
-    uk: "Українська"
+    en: "EN"
+    ua: "UA"
   activerecord:
     models:
       location: "Локація"
       trip: "Риболовля"
       fish: "Риба"
       dashboard: "Головна"
+      profile: "Профіль"
     attributes:
       location:
         name: "Назва"
@@ -77,3 +78,14 @@ uk:
     show:
       edit_trip: "Редагувати цю Подорож"
       destroy_trip: "Видалити цю Подорож"
+    profiles:
+      show:
+        phone: "Телефон"
+        description: "Опис"
+        edit_profile: "Редагувати Профіль"
+      edit:
+        phone: "Телефон"
+        description: "Опис"
+        avatar: "Аватар"
+        full_name: "Повне ім'я"
+        update_profile: "Оновити Профіль"
