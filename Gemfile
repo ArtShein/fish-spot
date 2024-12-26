@@ -52,7 +52,7 @@ group :development do
   gem "rubocop-rails-omakase", require: false
   gem "rubocop", "~> 1.39", require: false
   gem "rubocop-performance", "~> 1.15", ">= 1.15.1", require: false
-  gem "rubocop-rails", "~> 2.17", ">= 2.17.2", require: false
+  gem "rubocop-rails", "~> 2.28", require: false
   gem "rubocop-rspec", "~> 2.15", require: false
 end
 
