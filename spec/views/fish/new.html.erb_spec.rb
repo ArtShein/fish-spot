@@ -5,7 +5,7 @@ RSpec.describe "fish/new", type: :view do
     assign(:fish, Fish.new(
       name: "MyString",
       quantity: 1,
-      type: 1,
+      kind: :predator,
       weight: 1.5
     ))
   end
@@ -18,7 +18,7 @@ RSpec.describe "fish/new", type: :view do
 
       assert_select "input[name=?]", "fish[quantity]"
 
-      assert_select "input[name=?]", "fish[type]"
+      assert_select "select[name=?]", "fish[kind]"
 
       assert_select "input[name=?]", "fish[weight]"
     end

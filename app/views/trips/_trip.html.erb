@@ -1,12 +1,41 @@
 <div id="<%= dom_id trip %>">
   <p>
-    <strong><%=t('trips.form.name')%>:</strong>
+    <strong><%= t('trips.form.name') %>:</strong>
     <%= trip.name %>
   </p>
 
   <p>
-    <strong><%=t('trips.form.location')%>:</strong>
-    <%= trip.location.name %>
+    <strong><%= t('trips.form.location') %>:</strong>
+    <%= trip.location.display_name %>
   </p>
 
+  <% if trip.location&.coordinates? %>
+    <p>
+      <strong><%= t('trips.form.coordinates_short') %>:</strong>
+      <%= number_with_precision(trip.location.latitude, precision: 5) %>,
+      <%= number_with_precision(trip.location.longitude, precision: 5) %>
+    </p>
+  <% end %>
+
+  <% if trip.fishes.any? %>
+    <div class="mt-3">
+      <strong><%= t('trips.show.catch') %>:</strong>
+      <ul class="list-disc pl-5 mt-1">
+        <% trip.fishes.each do |fish| %>
+          <li>
+            <%= fish.name %>
+            <% if fish.quantity.present? %>
+              — <%= t('activerecord.attributes.fish.quantity') %>: <%= fish.quantity %>
+            <% end %>
+            <% if fish.weight.present? %>
+              — <%= t('activerecord.attributes.fish.weight') %>: <%= fish.weight %> kg
+            <% end %>
+            <% if fish.kind.present? %>
+              — <%= t("enums.fish.kind.#{fish.kind}") %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 </div>

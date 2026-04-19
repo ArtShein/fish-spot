@@ -1,0 +1,61 @@
+<%= form_with model: location, url: wizard_location_trips_path, method: :post do |f| %>
+  <% if location.errors.any? %>
+    <div class="text-red-700 mb-4">
+      <h2><%= t("global.messages.errors", count: location.errors.count) %></h2>
+      <ul>
+        <% location.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% geocode_url = geocode_reverse_path(format: :json) %>
+
+  <%= tag.div(
+        class: "not-prose w-full",
+        data: {
+          controller: "trip-map",
+          trip_map_mode_value: "picker",
+          trip_map_geocode_url_value: geocode_url
+        }
+      ) do %>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
+      <div>
+        <%= f.label :accessibility, t("locations.form.access"), style: "display: block" %>
+        <%= f.select :accessibility, Location.accessibilities.keys.map { |key| [t("enums.location.accessibility.#{key}"), key] } %>
+      </div>
+      <div>
+        <%= f.label :conditions, t("locations.form.conditions"), style: "display: block" %>
+        <%= f.select :conditions, Location.conditions.keys.map { |key| [t("enums.location.conditions.#{key}"), key] } %>
+      </div>
+      <div>
+        <%= f.label :proximity, t("locations.form.proxy"), style: "display: block" %>
+        <%= f.select :proximity, Location.proximities.keys.map { |key| [t("enums.location.proximity.#{key}"), key] } %>
+      </div>
+    </div>
+
+    <%= render "shared/leaflet_map",
+          variant: :picker,
+          form: f,
+          height: "min(55vh, 420px)",
+          picker_wrapper: false,
+          hint_key: "trips.form.map_click_hint" %>
+
+    <div class="mt-3">
+      <%= f.label :name, t("locations.form.name_optional"), style: "display: block" %>
+      <p class="text-xs text-gray-500 mb-1"><%= t("locations.form.name_optional_hint") %></p>
+      <%= f.text_field :name,
+            placeholder: t("locations.form.name_placeholder"),
+            class: "w-full max-w-lg border rounded px-2 py-1",
+            data: {
+              trip_map_target: "nameField",
+              action: "input->trip-map#onNameInput"
+            } %>
+    </div>
+  <% end %>
+
+  <div class="mt-6 flex flex-wrap items-center gap-3">
+    <%= button_tag t("trips.wizard.next"), type: "submit", name: nil, class: "bg-blue-600 text-white font-semibold py-2 px-5 rounded" %>
+  </div>
+<% end %>

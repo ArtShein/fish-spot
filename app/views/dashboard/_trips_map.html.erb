@@ -1,0 +1,16 @@
+<section class="not-prose w-full max-w-5xl mx-auto px-4 mb-8" aria-label="<%= t('dashboard.map.aria') %>">
+  <h2 class="text-2xl font-bold text-gray-900 mb-3"><%= t('dashboard.map.title') %></h2>
+  <% if locations.blank? %>
+    <p class="text-gray-600 mb-3"><%= t('dashboard.map.empty') %></p>
+  <% end %>
+  <% markers =
+       locations.map do |loc|
+         {
+           lat: loc.latitude.to_f,
+           lng: loc.longitude.to_f,
+           url: location_path(loc),
+           label: loc.name
+         }
+       end %>
+  <%= render "shared/leaflet_map", variant: :browse, markers: markers %>
+</section>

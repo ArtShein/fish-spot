@@ -1,1 +1,4 @@
 <%= render 'start_screen' unless user_signed_in? %>
+<% if user_signed_in? %>
+  <%= render 'trips_map', locations: @map_locations %>
+<% end %>

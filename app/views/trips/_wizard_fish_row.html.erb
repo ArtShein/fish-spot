@@ -1,0 +1,37 @@
+<div
+  class="mb-4 pb-4 border-b border-gray-100 last:border-0"
+  data-nested-fish-rows-row
+>
+  <%= ff.hidden_field :id if ff.object.persisted? %>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+    <div>
+      <%= ff.label :name, t("activerecord.attributes.fish.name"), style: "display: block" %>
+      <%= ff.text_field :name, class: "w-full border rounded px-2 py-1" %>
+    </div>
+    <div>
+      <%= ff.label :quantity, t("activerecord.attributes.fish.quantity"), style: "display: block" %>
+      <%= ff.number_field :quantity, min: 0, class: "w-full border rounded px-2 py-1" %>
+    </div>
+    <div>
+      <%= ff.label :kind, t("activerecord.attributes.fish.kind"), style: "display: block" %>
+      <%= ff.select :kind, Fish.kinds.keys.map { |k| [t("enums.fish.kind.#{k}"), k.to_s] }, {}, class: "w-full border rounded px-2 py-1" %>
+    </div>
+    <div>
+      <%= ff.label :weight, t("activerecord.attributes.fish.weight"), style: "display: block" %>
+      <%= ff.number_field :weight, step: :any, min: 0, class: "w-full border rounded px-2 py-1" %>
+    </div>
+  </div>
+
+  <div class="mt-2 flex justify-end">
+    <button
+      type="button"
+      data-nested-fish-rows-remove
+      data-action="nested-fish-rows#remove"
+      class="text-sm text-red-700 hover:underline"
+      hidden
+    >
+      <%= t("trips.wizard.remove_fish_row") %>
+    </button>
+  </div>
+</div>

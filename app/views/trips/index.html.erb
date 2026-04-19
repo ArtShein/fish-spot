@@ -1,16 +1,25 @@
-<p style="color: green"><%= notice %></p>
+<% if notice.present? %>
+  <p class="mb-4 rounded-lg bg-green-50 px-4 py-3 text-sm text-green-800 border border-green-200"><%= notice %></p>
+<% end %>
 
-<% content_for :title, "Trips" %>
+<% content_for :title, t("trips.index.title") %>
 
-<h1><%= t('.title') %></h1>
+<div class="max-w-5xl mx-auto px-4 pb-10">
+  <header class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between border-b border-gray-200 pb-6">
+    <h1 class="text-3xl font-bold text-gray-900 tracking-tight"><%= t("trips.index.title") %></h1>
+    <%= link_to t("trips.index.new_trip"), new_trip_path, class: "inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2" %>
+  </header>
 
-<div id="trips">
-  <% @trips.each do |trip| %>
-    <%= render trip %>
-    <p>
-      <%= link_to t('.show_trip'), trip %>
-    </p>
+  <% if @trips.any? %>
+    <div class="flex flex-col gap-6">
+      <% @trips.each do |trip| %>
+        <%= render "trip_card", trip: trip %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="rounded-xl border border-dashed border-gray-300 bg-gray-50 px-6 py-12 text-center">
+      <p class="text-gray-600 mb-4"><%= t("trips.index.empty") %></p>
+      <%= link_to t("trips.index.new_trip"), new_trip_path, class: "inline-flex items-center font-semibold text-blue-700 hover:text-blue-900 hover:underline" %>
+    </div>
   <% end %>
 </div>
-
-<%= link_to t('.new_trip'), new_trip_path %>

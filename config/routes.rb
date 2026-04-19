@@ -8,22 +8,26 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     root to: "dashboard#index"
     get "dashboard/index"
-    resources :trips
+    get "geocode/reverse", to: "geocode#reverse", as: :geocode_reverse
+    resources :trips do
+      collection do
+        post :wizard_location
+        post :wizard_trip_name
+      end
+      member do
+        get :wizard_fish
+      end
+    end
     resources :locations
     resources :fish
     resource :profile, only: %i[show edit update]
   end
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Define your routes according to the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/*
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

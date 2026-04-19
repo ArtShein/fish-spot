@@ -15,20 +15,29 @@
     <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css", crossorigin: "anonymous" %>
     <%= javascript_importmap_tags %>
-    <style>
-        body {
-            overflow: hidden;
-        }
-    </style>
   </head>
 
   <body>
     <% unless devise_controller? %>
       <%= render 'dashboard/navigation' %>
     <% end %>
-    <main class="prose mx-auto">
-      <%= yield %>
+    <main class="mx-auto max-w-5xl py-6">
+      <% main_content = capture { yield } %>
+      <% unless devise_controller? %>
+        <% on_dashboard = controller_name == "dashboard" && action_name == "index" %>
+        <% unless content_for?(:hide_page_back) || on_dashboard %>
+          <% back_href = yield(:page_back_url).presence || page_back_href %>
+          <% back_label = yield(:page_back_label).presence || t("global.back") %>
+          <div class="not-prose mb-3 mx-20">
+            <%= render "shared/page_back", back_href: back_href, back_label: back_label %>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="min-w-0 px-4">
+        <%= main_content %>
+      </div>
     </main>
   </body>
 </html>

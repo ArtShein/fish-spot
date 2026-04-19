@@ -1,0 +1,79 @@
+<%# locals: trip %>
+<% trip_url = trip_path(trip, locale: I18n.locale) %>
+<article
+  class="not-prose border border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md hover:border-gray-300 transition-all overflow-hidden"
+  id="<%= dom_id trip %>"
+>
+  <div class="grid grid-cols-1 md:grid-cols-12 md:min-h-[168px]">
+    <div class="md:col-span-7 p-5 md:p-6 flex flex-col border-b md:border-b-0 md:border-r border-gray-100">
+      <h2 class="text-xl font-semibold text-gray-900 leading-tight mb-3">
+        <%= link_to trip.name, trip_url, class: "text-gray-900 hover:text-green-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 rounded" %>
+      </h2>
+
+      <div class="space-y-2 text-sm text-gray-700 flex-1">
+        <p>
+          <span class="font-medium text-gray-800"><%= t("trips.form.location") %>:</span>
+          <%= trip.location.display_name %>
+        </p>
+
+        <% if trip.location&.coordinates? %>
+          <p class="text-gray-600">
+            <span class="font-medium text-gray-700"><%= t("trips.form.coordinates_short") %>:</span>
+            <%= number_with_precision(trip.location.latitude, precision: 5) %>,
+            <%= number_with_precision(trip.location.longitude, precision: 5) %>
+          </p>
+        <% end %>
+
+        <% if trip.fishes.any? %>
+          <div class="pt-2 mt-3 border-t border-gray-100">
+            <p class="font-medium text-gray-800 mb-2"><%= t("trips.show.catch") %></p>
+            <ul class="space-y-1.5">
+              <% trip.fishes.each do |fish| %>
+                <li class="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-gray-700">
+                  <span class="font-medium text-gray-900"><%= fish.name %></span>
+                  <% if fish.quantity.present? %>
+                    <span class="text-gray-600">· <%= t("activerecord.attributes.fish.quantity") %> <%= fish.quantity %></span>
+                  <% end %>
+                  <% if fish.weight.present? %>
+                    <span class="text-gray-600">· <%= fish.weight %> kg</span>
+                  <% end %>
+                  <% if fish.kind.present? %>
+                    <span class="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-900 ring-1 ring-inset ring-green-600/20">
+                      <%= t("enums.fish.kind.#{fish.kind}") %>
+                    </span>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="mt-5 pt-4 border-t border-gray-100">
+        <%= link_to t("trips.index.show_trip"), trip_url, class: "inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-900 hover:underline" %>
+      </div>
+    </div>
+
+    <div class="md:col-span-5 bg-gray-50 p-3 md:p-4 flex flex-col items-stretch justify-center min-h-[160px]">
+      <% if trip.location&.coordinates? %>
+        <% markers = [
+          {
+            lat: trip.location.latitude.to_f,
+            lng: trip.location.longitude.to_f,
+            url: trip_url,
+            label: trip.name
+          }
+        ] %>
+        <%= render "shared/leaflet_map",
+              variant: :browse,
+              markers: markers,
+              height: "160px",
+              map_class: "w-full rounded-lg border border-gray-200 shadow-sm z-0" %>
+      <% else %>
+        <div class="flex h-[160px] items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-100 px-4 text-center text-sm text-gray-500">
+          <%= t("trips.index.map_unavailable") %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</article>

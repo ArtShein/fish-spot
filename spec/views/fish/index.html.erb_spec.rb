@@ -6,13 +6,13 @@ RSpec.describe "fish/index", type: :view do
       Fish.create!(
         name: "Name",
         quantity: 2,
-        type: 3,
+        kind: :predator,
         weight: 4.5
       ),
       Fish.create!(
         name: "Name",
         quantity: 2,
-        type: 3,
+        kind: :predator,
         weight: 4.5
       )
     ])
@@ -23,7 +23,7 @@ RSpec.describe "fish/index", type: :view do
     cell_selector = 'div>p'
     assert_select cell_selector, text: Regexp.new("Name".to_s), count: 2
     assert_select cell_selector, text: Regexp.new(2.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(3.to_s), count: 2
+    assert_select cell_selector, text: Regexp.new("Predator"), count: 2
     assert_select cell_selector, text: Regexp.new(4.5.to_s), count: 2
   end
 end

@@ -22,8 +22,8 @@
   </div>
 
   <div>
-    <%= form.label :type, style: "display: block" %>
-    <%= form.number_field :type %>
+    <%= form.label :kind, t("activerecord.attributes.fish.kind"), style: "display: block" %>
+    <%= form.select :kind, Fish.kinds.keys.map { |k| [t("enums.fish.kind.#{k}"), k.to_s] }, {}, class: "border rounded px-2 py-1" %>
   </div>
 
   <div>

@@ -10,8 +10,8 @@
   </p>
 
   <p>
-    <strong>Type:</strong>
-    <%= fish.type %>
+    <strong><%= t("activerecord.attributes.fish.kind") %>:</strong>
+    <%= fish.kind.present? ? t("enums.fish.kind.#{fish.kind}") : "—" %>
   </p>
 
   <p>

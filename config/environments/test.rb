@@ -64,4 +64,10 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # Scoped routes use (/:locale); without this, url_helpers like fish_path(record) bind the
+  # record to the locale segment when no controller default_url_options are present (e.g. view specs).
+  config.after_initialize do
+    Rails.application.routes.default_url_options[:locale] = I18n.default_locale
+  end
 end

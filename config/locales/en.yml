@@ -18,6 +18,23 @@ en:
       trip:
         name: "Name"
         location: "Location"
+        latitude: "Latitude"
+        longitude: "Longitude"
+      fish:
+        name: "Species / name"
+        quantity: "Quantity"
+        kind: "Kind (peaceful / predator)"
+        weight: "Weight (kg)"
+    errors:
+      models:
+        location:
+          attributes:
+            base:
+              need_map_or_name: "Set a point on the map, or enter a name for this spot."
+            latitude:
+              incomplete_pair: "must be set together with longitude (WGS84 decimal degrees)"
+            longitude:
+              incomplete_pair: "must be set together with latitude (WGS84 decimal degrees)"
   enums:
     location:
       accessibility:
@@ -30,7 +47,12 @@ en:
       proximity:
         near: "Near bus stop"
         far: "Far from bus stop"
+    fish:
+      kind:
+        peace: "Peaceful"
+        predator: "Predator"
   global:
+    back: "Back"
     messages:
       errors:
         one: "One error prohibited this trip from being saved:"
@@ -44,6 +66,9 @@ en:
     back: "Back to Locations"
     form:
       name: "Name"
+      name_optional: "Location name (optional)"
+      name_optional_hint: "If you leave this empty, we use the coordinates as the title."
+      name_placeholder: "e.g. Left bank of the lake"
       access: "Accessibility"
       conditions: "Conditions"
       proxy: "Proximity"
@@ -60,15 +85,29 @@ en:
     show:
       edit_location: "Edit this Location"
       destroy_location: "Destroy this Location"
+  dashboard:
+    map:
+      title: "Your locations on the map"
+      empty: "No locations with coordinates yet. Create a location when starting a new trip, or edit a location and add coordinates."
+      aria: "Map of locations"
   trips:
     back: "Back to Trips"
     form:
       name: "Name"
       location: "Location"
+      coordinates_legend: "Map position (optional)"
+      coordinates_hint: "Click the map to set the spot, or type coordinates below. Decimal degrees (WGS84). Leave empty if unknown."
+      map_click_hint: "Click on the map to place the fishing spot — latitude and longitude will fill in automatically."
+      coordinates_short: "Coordinates"
+      pick_location: "Location"
+      new_location: "New location"
+      trip_title: "Trip title"
     index:
       title: "Trips"
       new_trip: "New Trip"
-      show_trip: "Show this Trip"
+      show_trip: "Open trip"
+      empty: "You don’t have any trips yet."
+      map_unavailable: "No coordinates for this spot — map can’t be shown."
     new:
       title: "New Trip"
       create: "Create Trip"
@@ -78,6 +117,28 @@ en:
     show:
       edit_trip: "Edit this Trip"
       destroy_trip: "Destroy this Trip"
+      catch: "Catch"
+    wizard:
+      page_title: "New trip"
+      title: "New trip"
+      step1_intro: "Step 1 of 3 — set the spot on the map and optional location name (or leave the name empty to use coordinates)."
+      step2_intro: "Step 2 of 3 — name this trip. Spot: %{location}."
+      step3_intro: "Step 3 of 3 — add what you caught on “%{trip}” at %{location}, or skip."
+      trip_name_hint: "This is only the trip title — not the location name."
+      next: "Next"
+      continue: "Continue"
+      save_trip: "Save trip"
+      back_to_location: "← Change location (step 1)"
+      back_to_trip_name: "Edit trip title"
+      skip_fish: "Skip fish for now"
+      location_saved: "Location saved. Name your trip."
+      trip_created: "Trip saved."
+      unknown_location: "That location was not found."
+      create_failed: "Could not create trip."
+      fish_section: "Catch"
+      fish_hint: "Fill one catch, then add another row if you need more. Empty rows are ignored."
+      add_fish_row: "+ Add another fish"
+      remove_fish_row: "Remove row"
     profiles:
       show:
         phone: "Phone"

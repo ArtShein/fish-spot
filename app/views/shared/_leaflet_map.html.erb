@@ -1,0 +1,70 @@
+<%# locals: variant (:browse | :picker), markers:, form:, height:, map_class:, picker_wrapper (default true), hint_key %>
+<% height ||= "min(70vh, 520px)" %>
+<% map_class = local_assigns.fetch(:map_class, "w-full rounded-lg border border-gray-200 shadow z-0") %>
+<% markers = local_assigns.fetch(:markers, []) %>
+<% hint_key = local_assigns.fetch(:hint_key, "trips.form.map_click_hint") %>
+<% picker_wrapper = local_assigns.fetch(:picker_wrapper, true) %>
+
+<% if variant.to_sym == :browse %>
+  <%= tag.div(
+        class: "w-full",
+        data: {
+          controller: "trip-map",
+          trip_map_mode_value: "markers",
+          trip_map_markers_value: markers
+        }
+      ) do %>
+    <%= tag.div(
+          class: map_class,
+          style: "height: #{height}; min-height: 280px;",
+          data: { trip_map_target: "map" }
+        ) %>
+  <% end %>
+<% else %>
+  <% raise ArgumentError, "form is required for leaflet_map picker variant" unless local_assigns[:form] %>
+
+  <% inner = capture do %>
+    <p class="text-sm text-gray-600 mb-2"><%= t(hint_key) %></p>
+    <%= tag.div(
+          class: map_class,
+          style: "height: #{height}; min-height: 240px;",
+          data: { trip_map_target: "map" }
+        ) %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+      <div>
+        <%= form.label :latitude, style: "display: block" %>
+        <%= form.number_field :latitude,
+              step: :any,
+              placeholder: "50.4501",
+              data: {
+                trip_map_target: "latitudeField",
+                action: "input->trip-map#syncFromInputs change->trip-map#syncFromInputs"
+              } %>
+      </div>
+      <div>
+        <%= form.label :longitude, style: "display: block" %>
+        <%= form.number_field :longitude,
+              step: :any,
+              placeholder: "30.5234",
+              data: {
+                trip_map_target: "longitudeField",
+                action: "input->trip-map#syncFromInputs change->trip-map#syncFromInputs"
+              } %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if picker_wrapper %>
+    <%= tag.div(
+          class: "not-prose w-full",
+          data: {
+            controller: "trip-map",
+            trip_map_mode_value: "picker"
+          }
+        ) do %>
+      <%= inner %>
+    <% end %>
+  <% else %>
+    <%= inner %>
+  <% end %>
+<% end %>
